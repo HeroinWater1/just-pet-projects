@@ -1,25 +1,21 @@
 import sys
+from rag import Rag
 # import config
 class App:
-    def setFileName(self, File):
-        self.filename=File
+    def __init__(self):
+        self.setSysArgv()
         return self
-    def setSearchContent(self, Content):
-        self.content=Content
-        return self
-    def setSysArgv(self, Sysargv):
+    def setSysArgv(self):
         if len(sys.argv) == 3:
-            filename = sys.argv[1]
-            self.setFileName(filename)
+            self.filename = sys.argv[1]
+            self.content = sys.argv[2]
         else: print('Repeat it again')
         return self
-    def getFileName(self):
-        return self.filename
-    def getSearchContent(self):
-        return self.content
+    def run(self):
+        return Rag(self.filename, self.content)
         
 
 if __name__ == "__main__":
-    app = App().setSysArgv(sys.argv)
+    app = App()
 
     
